@@ -2,7 +2,7 @@ package vn.com.t3h.buoi2;
 
 import java.util.Scanner;
 
-public class bai2 {
+public class Bai2 {
     public static void main(String[] args) {
         System.out.print("Nhập a: ");
         int a = new Scanner(System.in).nextInt();

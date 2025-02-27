@@ -2,7 +2,7 @@ package vn.com.t3h.buoi2;
 
 import java.util.Scanner;
 
-public class bai3 {
+public class Bai3 {
     public static void main(String[] args) {
 
         System.out.print("Nhập chiều dài:");
