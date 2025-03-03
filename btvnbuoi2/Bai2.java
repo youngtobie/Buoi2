@@ -16,10 +16,10 @@ public class Bai2 {
         System.out.print("Nhập vào cạnh c: ");
         int c = new Scanner(System.in).nextInt();
         System.out.print("KẾT LUẬN: ");
-        if(a+b>c && a+c>b && b+c>a){
+        if((a+b>c) &&  (a+c>b) && (b+c>a)){
             if(a == b && b == c){
                 System.out.println("Tam giác đều");
-            }else if(a*a + b*b == c*c || a*a + c*c == b*b || b*b + c*c == a*a){
+            }else if((a*a + b*b == c*c ) || (a*a + c*c == b*b) || (b*b + c*c == a*a)){
                 System.out.println("Tam giác vuông");
             }else if(a == b || a == c || b == c){
                 if(a*a + b*b == c*c || a*a + c*c == b*b || b*b + c*c == a*a) {
