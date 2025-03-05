@@ -24,6 +24,6 @@ public class Bai3 {
         if(n == 1)
             return 1;
         else
-            return n + giaiThua(n-1);
+            return n*giaiThua(n-1);
     }
 }

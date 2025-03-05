@@ -14,21 +14,34 @@ public class BaI4 {
 
     public static void main(String[] args) {
 
-        long sum = 0;
-        for(long  a = 0; a <= 200; a++)
+        int tong = 200000;
+        int mengGia1 = 1000;
+        int mengGia2 = 2000;
+        int mengGia3 = 5000;
+
+        int tongSoToMenhGia1 = tong / mengGia1;
+        int tongSoToMenhGia2 = tong / mengGia2;
+        int tongSoToMenhGia3 = tong / mengGia3;
+
+        for(int i = 0 ; i < tongSoToMenhGia1 ; i++)
         {
-            for(long b = 0; b <=100; b++)
-            {
-                for(long c = 0;c <= 40; c++)
-                {
-                    if((a * 1000) + (b * 2000) + (c * 5000) == 200000)
+            int soToMenhGia1 = i;
+            for(int j = 0 ; j < tongSoToMenhGia2 ; j++){
+                int soToMenhGia2 = j;
+                for(int k = 0 ; k < tongSoToMenhGia3 ; k++){
+                    int soToMenhGia3 = k;
+
+                    int tongTienMenhGia1 = soToMenhGia1 * mengGia1;
+                    int tongTienMenhGia2 = soToMenhGia2 * mengGia2;
+                    int tongTienMenhGia3 = soToMenhGia3 * mengGia3;
+
+                    if(tong == (tongTienMenhGia1 + tongTienMenhGia2 + tongTienMenhGia3))
                     {
-                        sum++;
+                        System.out.println(String.format(""));
                     }
                 }
             }
-            }
-        System.out.println("Các phương án để có tổng 20000đ với 1000đ , 2000đ , 5000đ: " + sum);
         }
+    }
     }
 
