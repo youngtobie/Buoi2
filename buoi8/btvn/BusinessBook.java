@@ -6,6 +6,15 @@ public class BusinessBook extends Book {
 
     private String businessField;
 
+    public BusinessBook() {}
+    public BusinessBook(int id,
+                        String title,
+                        int year,
+                        String author,
+                        String businessField) {
+        super(id,title,year,author);
+        this.businessField = businessField;
+    }
     @Override
     public void displayInfo() {
         super.displayInfo();

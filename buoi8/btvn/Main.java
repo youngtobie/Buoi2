@@ -1,43 +1,96 @@
 package vn.com.t3h.buoi8.btvn;
 
+import vn.com.t3h.buoi7.btvn.Utils;
+
 import java.util.Scanner;
 
 public class Main {
+    public static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
-        ILibrary iLibrary = new Library(5);
-        System.out.println("nhập số lượng sách:  ");
+
+        System.out.println("Nhập vào số lượng sách của thư viện: ");
         int n = new Scanner(System.in).nextInt();
-        int loaiSach = 0;
-        for (int j = 0; j < n; j++) {
-            System.out.println("Bạn muốn chọn loại sách nào ?? ");
-            System.out.println("1.BusinessBook");
-            System.out.println("2.ScienceBook");
-            loaiSach = new Scanner(System.in).nextInt();
-            Book book = null;
-            switch (loaiSach) {
+        ILibrary library = new Library(n);
+        Book bussinessBook = new BusinessBook(1, "Dạy con làm giàu", 2001, "Robert", "Tiền bạc");
+        library.addBook(bussinessBook);
+        Book ScienceBook = new ScienceBook(2, "Hố đen", 2001, "Akira", "Vũ trụ");
+        library.addBook(ScienceBook);
+
+
+        //2 xây dựng menu với các chức năng
+
+        int choice = 0;
+        do {
+            System.out.println("1.Thêm sách");
+            System.out.println("2.Cập nhật sách bằng id");
+            System.out.println("3.Xóa sách bằng id");
+            System.out.println("4.Tìm sách theo tác giả");
+            System.out.println("5.Hiên thị toàn bộ sách");
+            System.out.println("6.Thoát");
+            choice = new Scanner(System.in).nextInt();
+            switch (choice) {
                 case 1:
-                    book = new BusinessBook();
+                    Book book = getBook();
+                    if (book == null) {
+                        System.out.println("Loại sách không hơợp lệ");
+                        choice = -1;
+                        break;
+                    }
                     book.inputInfo();
+                    library.addBook(book);
                     break;
                 case 2:
-                    book = new ScienceBook();
-                    book.inputInfo();
+                    System.out.println("Nhập vào id: ");
+                    int id = sc.nextInt();
+                    System.out.println("Nhập vào thông tin sách Update: ");
+                    Book update = getBook();
+                    if (update == null) {
+                        System.out.println("Loại sách không hơợp lệ");
+                        choice = -1;
+                        break;
+                    }
+                    update.inputInfo();
+                    library.updateBook(id, update);
+                    break;
+                case 3:
+                    System.out.println("Nhập vào id xóa: ");
+                    int idDelete = sc.nextInt();
+                    library.deleteBook(idDelete);
+                    break;
+                case 4:
+                    System.out.println("nhập tên giác giả: ");
+                    String author = sc.nextLine();
+                    library.BsearchBook(author);
+                    break;
+                case 5:
+                    library.displayAllBooks();
                     break;
                 default:
-                    System.out.println("Nhập thông tin không đúng định dạng");
+                    choice = -1;
+                    System.out.println("Chức năng chọn  không tồn tại");
+                    break;
             }
-            iLibrary.addBook(book);
-            System.out.println("Thêm danh sách thành công");
-        }
-        System.out.println("Danh sách sách trong thư viện");
-        iLibrary.displayAllBooks();
+        } while (choice != 6);
 
-        System.out.println("Nhập id sách muốn xóa: ");
-        int a = new Scanner(System.in).nextInt();
-        iLibrary.deleteBook(a);
-        iLibrary.displayAllBooks();
-        System.out.println("Nhập tác giả mà bạn muốn tìm kiếm: ");
-        String b = new Scanner(System.in).nextLine();
-        iLibrary.searchBook(b);
+    }
+
+    public static Book getBook() {
+        System.out.println("Chọn loại sách để thêm: ");
+        System.out.println("1. sách khoa học");
+        System.out.println("2. Sách kinh doan");
+        int typeBook = sc.nextInt();
+        Book book = null;
+        switch (typeBook) {
+            case 1:
+                book = new ScienceBook();
+                break;
+            case 2:
+                book = new BusinessBook();
+                break;
+            default:
+                System.out.println("Số nhập không hợp lệ");
+        }
+        return book;
     }
 }

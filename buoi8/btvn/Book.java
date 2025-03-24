@@ -10,7 +10,17 @@ public abstract class Book {
     private int year;
     private String author;
 
+    public Book() {
+
+    }
+    public Book(int id, String title, int year, String author) {
+        this.id = id;
+        this.title = title;
+        this.year = year;
+        this.author = author;
+    }
     public void displayInfo() {
+        System.out.println("+_----------------------_+");
         System.out.println("ID: " + this.id);
         System.out.println("Title: " + this.title);
         System.out.println("Year: " + this.year);
