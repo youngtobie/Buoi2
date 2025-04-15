@@ -1,0 +1,54 @@
+cách thiết kế data base
+đề bài : thiết kế DB phục vụ chức năng trang home , detail sản phẩm vào hệ thống https://atino.vn/
+b1: tìm hiểu hệ thống, trong thực tế cần đọc tà liệu mô tả yêu ầu , hoặc giao diện Ui của chức năng nếu c , tham khảo các hệ tống tương tự có sẵn
+b2: xác định các loại dữ liệu cần đưa vào trong hệ thống, ==> đây là ca dữ liệu thông tin từ dời sống thực tế
+   - dữ liệu về phân loại quần áo sản phẩm
+   - thông tin sản phẩm, giá cả, chi tiết sản phẩm, ảnh sản phẩm,tên sản phẩm
+   - hệ thống của hàng
+   - Thông tin Công ty
+   - thông tin mạng xã hội
+
+B3: xác định ra các thực thể từ các dữ liệu đưuọc xác định ở bước 2
+   - entity:là đối tượng ngoài đời sống, dữ liệu được ánh xạ vào trong lập trình
+     + loại sản phẩm (category) : chuyên lưu trữ thông tin của loại sản phẩm bao gồm
+                                 +  name
+                                 + ngay tạo
+     + sản phẩm (production) : chuyên lưu trữ các thông tin về sản phẩm
+                               + tên , kích thước màu sắc, mô tả
+     + hệ thống các cửa hàng (chi nhánh) : lưu trữ các thông tin , chi nhánh hệ thống các cửa hàng
+                                          +  tên , địa chỉ ,email, sđt,
+     + Thông tin Công ty : : lưu trữ các thông tin cty
+                            +  tên , địa chỉ , hotline , logoo, mã số doanh nghiệp, mail
+     + thông tin mạng xã hội (social) : lưu trữ thông tin về các trang mạng xã hội phục vũ maketting
+                                       + tên , logo, link, amin
+     + hình ảnh: Luư trữ thông tin hình ảnh logoo, của hệ thống
+                + tên, định dạng, đường dẫn lưu
+     + màu sắc (color) : thông tin về màu sac
+                        + tên, hình ảnh
+     + kích thước(kiích thước): thông tin về kích thước
+                               + tên,size, loại kích thước
+     + => tách ra 1 thực thể nữa chi tiết sản pẩm
+                          + tổ hợp lưu trữ thông tin cuủa chi tiết cấc sản phẩm ứng với màu sắc size hình ảnh
+                          vd:
+                            cùng 1 sp ảo polo có 3 size
+                                 + 3 màu sắc , 5 size => ít nhất có bao nhiêu sản phẩm
+B4: Xác định mối quan hệ của các thực thể và xây dựng sơ đồ thực thẻ liên kết từ thông tin các thực thể ở bước3
+    -  các mối quan hệ :
+        1 - n: 1 nhiều
+        n -1 : nhiều 1
+        n - n : nhiều nhiều
+        1 -1 : một một
+
+        MQH:
+        - Sản phẩm(production) - production : 1-n
+        - branch - category : 1 - n
+        - company info - chi nhánh: 1 -N
+        - chi nhánh - công ty : 1 - N
+        - sản phẩm - Image : N - N
+        - hình ảnh - màu sắc: n - N
+        - sản phẩm - size : N- N
+
+B5: Từ sơ đồ thực thể liên kết -> chuyển sang các table trong database với nguyên tắc
+   -  các thưc thể tương ứuwngsvoi các table
+   - thuộc tính của thực thể => các colum table
+   - mqh của các thực thể -> khóa ngoại của table
